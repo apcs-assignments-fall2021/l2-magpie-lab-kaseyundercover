@@ -56,6 +56,8 @@ public class Magpie
             response = "I have a mustache and I'm tall";
         } else if (findWord(statement, "I want") >= 0){
             transformIWantStatement(statement);
+        } else if (findWord(statement, "i want") >= 0){
+            transformIWantStatement(statement);
         }
 
 
@@ -135,8 +137,8 @@ public class Magpie
     public String transformIWantStatement(String statement)
     {
         String updatedwant=(statement.replace("I want", ""));
-        return ("Would you really be happy if you had" + updatedwant + "?");
-
+        String wantstatement="Would you really be happy if you had" + updatedwant + "?";
+        return wantstatement;
     }
 
     /**

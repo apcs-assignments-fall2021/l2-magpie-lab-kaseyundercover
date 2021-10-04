@@ -52,13 +52,41 @@ public class Magpie
             response = "Wanna be friends?";
         } else if (findWord(statement, "live") >= 0) {
             response = "I live in Danville";
+        } else if (findWord(statement, "I think") >= 0) {
+            response = Ithink(statement);
         } else if (findWord(statement, "look like") >= 0) {
             response = "I have a mustache and I'm tall";
-        } else if (findWord(statement, "I want") >= 0){
-            transformIWantStatement(statement);
-        } else if (findWord(statement, "i want") >= 0){
-            transformIWantStatement(statement);
+        } else if (findWord(statement, "I want to") >= 0) {
+            response = transformIWantToStatement(statement);
+        } else if (findWord(statement, "I want") >= 0) {
+            response = transformIWantStatement(statement);
+        } else if (findWord(statement, "i want") >= 0) {
+            response = transformIWantStatement(statement);
+        } else if (findWord(statement, "I") >= 0 && findWord(statement, "you") >= 0 && findWord(statement, "you") > findWord(statement, "I")) {
+            response = transformIYouStatement(statement);
+        } else if (findWord(statement, "you") >= 0 && findWord(statement, "me") >= 0 && findWord(statement, "me") > findWord(statement, "you")) {
+            response = transformYouMeStatement(statement);
+        } else if (findWord(statement, "red") >= 0
+                || findWord(statement, "blue") >= 0
+                || findWord(statement, "green") >= 0
+                || findWord(statement, "orange") >= 0) {
+            response = "That is my favorite color!";
         }
+        else if (findWord(statement, "sport") >= 0) {
+            response = "I love baseball!";}
+     else if (findWord(statement, "I like") >= 0) {
+    response = ilike(statement);}
+     else if (findWord(statement, "Do you") >= 0
+         || (findWord(statement, "do you") >= 0)) {
+         response = "I most certainly do!" ;}
+        else if (findWord(statement, "Can you") >= 0
+                || (findWord(statement, "can you") >= 0)) {
+            response = "I don't know, can I?" ;}
+        else if (findWord(statement, "name") >= 0) {
+            response = "My name is Magpie.";}
+        else if (findWord(statement, "I feel") >= 0) {
+            response = Ifeel(statement);}
+
 
 
     else
@@ -125,6 +153,9 @@ public class Magpie
 
        else return -1;
     }
+
+
+
     
     // We will work on the following methods later!
 
@@ -149,8 +180,9 @@ public class Magpie
      */
     public String transformIYouStatement(String statement)
     {
-        //your code here
-        return "";
+        String sub=(statement.substring(2, statement.length()-4));
+        String youstatement="Why do you " + sub + " me?";
+        return youstatement;
     }
 
     /**
@@ -161,8 +193,9 @@ public class Magpie
      */
     public String transformIWantToStatement(String statement)
     {
-        // your code here
-        return "";
+        String sub=(statement.substring(7, statement.length()));
+        String youstatement="What would it mean " + sub + "?";
+        return youstatement;
     }
 
 
@@ -176,7 +209,40 @@ public class Magpie
      */
     public String transformYouMeStatement(String statement)
     {
-        // your code here
-        return "";
+        statement = statement.trim();
+        String p = statement.substring(statement.length() - 1);
+        if (p.equals("."))
+        {
+            statement = statement.substring(0, statement.length() - 1);
+        }
+        int x = findWord(statement, "you");
+        int y = findWord(statement, "me");
+        String sub = statement.substring(x + 3, y).trim();
+        return "What makes you think that I " + sub + " you?";
+
+
+
+    }
+
+
+public String Ithink(String statement){
+    String sub=(statement.substring(7, statement.length()));
+    String think="Are you sure that" + sub + "?";
+    return think;
+}
+    public String ilike(String statement)
+    {
+        String sub=(statement.substring(6, statement.length()));
+        String youstatement="I really don't like" + sub + "!";
+        return youstatement;
+    }
+
+
+    public String Ifeel(String statement)
+    {
+        String sub=(statement.substring(6, statement.length()));
+        String youstatement="Why do you feel" + sub + "?";
+        return youstatement;
     }
 }
+
